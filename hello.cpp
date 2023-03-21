@@ -1,5 +1,15 @@
 #include <iostream>
 #include <string>
+#include <QApplication>
+#include <QWidget>
+#include <QVBoxLayout>
+#include <QFormLayout>
+#include <QLineEdit>
+#include <QSpinBox>
+#include <QCheckBox>
+#include <QPushButton>
+#include <QLabel>
+#include <QString>
 
 using namespace std;
 
@@ -16,18 +26,25 @@ public:
         }
 
     // Función para leer los datos del teclado
-    void LeerDatos() {
-        cout << "Ingrese el nombre del Empleado:";
-        getline(cin, nombre);
-        cout << "Ingrese el numero de Empleado:";
-        cin >> numerodeempleado;
-        cin.ignore(); // Ignorar el salto de línea después de leer el número de empleado
+   void LeerDatos(string nombre, string apellidos, int numerodeempleado, string email, float sueldo, bool experto) {
+        this->nombre = nombre;
+        this->apellidos = apellidos;
+        this->numerodeempleado = numerodeempleado;
+        this->email = email;
+        this->sueldo = sueldo;
+        this->experto = experto;
     }
 
     // Función para visualizar los datos en pantalla
-    void VerDatos() {
-        cout << "Nombre: " << nombre << endl;
-        cout << "Numero de Empleado: " << numerodeempleado << endl;
+    QString VerDatos() {
+        QString datos = "Nombre(s): " + QString::fromStdString(nombre) + "\n";
+        datos += "Apellidos(s): " + QString::fromStdString(apellidos) + "\n";
+        datos += "ID empleado(a): " + QString::number(numerodeempleado) + "\n";
+        datos += "Correo empleado(a): " + QString::fromStdString(email) + "\n";
+        datos += "Sueldo empleado(a): " + QString::number(sueldo) + "\n";
+        datos += "Es experto? -> ";
+        datos += experto ? "Sí" : "No";
+        return datos;
     }
 
 private:
